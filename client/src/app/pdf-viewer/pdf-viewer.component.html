@@ -36,30 +36,35 @@
   </div>
   <div class="main-content w-screen">
     <div class="wrapper flex">
-      <div class="file-view w-full bg-gray-100 border-2 border-solid border-blue-500" style="height: 94vh;"
+      <div class="file-view w-full bg-gray-100 border-2 border-solid border-blue-500" style="height: 90vh;"
       >
         <pdf-viewer
           [src]="fileSelectedPath"
           [(page)]="currentPage"
+          [show-all]="false"
           [original-size]="false"
           [stick-to-page]="true"
           [zoom-scale]="'page-fit'"
-          [show-all]="false"
+          [zoom]="fileZoom"
           style="height: 100%">
         </pdf-viewer>
-        <div class="toolbar w-2/4 m-auto bg-slate-200 rounded-md" style="height: 6vh;"></div>
-      </div>
-      <div class="file-data w-1/2 p-2 h-screen bg-white border-2 border-solid border-green-500">
-        <div class="top-bar flex justify-between">
-          <div class="file-name text-center">
-            <h6>this is invoice's name</h6>
-          </div>
-          <div class="file-count ">
+        <div class="toolbar flex justify-between w-2/4 m-auto my-3 p-1.5 bg-slate-200 rounded-md" style="height: 6vh;">
+          <div class="file-count">
             <div class="flex shrink-0 items-center whitespace-nowrap text-xs">
               <span>Page</span>
               <input class="mx-1 w-12 rounded border border-solid border-gray-200 p-1 text-center" type="number" min="1" max="4" value="2">
               <span class="mr-4">of 4</span>
             </div>
+          </div>
+          <div class="zoom">
+            <input id="small-range" type="range" [(value)]="fileZoom" [step]="20" class="w-2/4 h-1 m-1 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700">
+          </div>
+        </div>
+      </div>
+      <div class="file-data w-1/2 p-2 h-screen bg-white border-2 border-solid border-green-500">
+        <div class="top-bar flex justify-between">
+          <div class="file-name text-center">
+            <h6>this is invoice's name</h6>
           </div>
         </div>
       </div>
