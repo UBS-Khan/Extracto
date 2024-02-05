@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SidebarModule } from 'primeng/sidebar'
 import { ButtonModule } from 'primeng/button'
+import { InputNumberModule } from 'primeng/inputnumber'
 import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload'
 
 @Component({
@@ -11,6 +12,7 @@ import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload'
     PdfViewerModule,
     SidebarModule,
     ButtonModule,
+    InputNumberModule,
     FileUploadModule
   ],
   templateUrl: './pdf-viewer.component.html',
@@ -20,14 +22,16 @@ export class PdfViewerComponent {
   isOpen: boolean = false;
   filePaths: string[] = [];
   fileSelectedPath: string = '';
+  currentPage: any = 1;
 
   fileSelected(filePath: string) {
     this.fileSelectedPath = filePath;
   }
 
-  async fileUploaded(event: FileUploadEvent) {
-    await event.files.map(file => {
-      this.filePaths.push(URL.createObjectURL(file));
-    })
+  fileUploaded(event: FileUploadEvent) {
+    event.files.map(file => {
+    this.filePaths.push(URL.createObjectURL(file));
+  })
+    this.fileSelectedPath = this.filePaths[0];
   }
 }
