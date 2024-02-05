@@ -1,31 +1,57 @@
-<div>
-    <div class="w-60 h-screen bg-gray-100 overflow-scroll" style="border: 2px solid red;">
-        <div class="wrapper">
-            <div class="flex justify-center p-2">
-                <p-fileUpload
-                    [auto]="true"
-                    [multiple]="true"
-                    mode="basic" 
-                    chooseLabel="Upload File"
-                    [chooseIcon]="'pi-upload'" 
-                    (onUpload)="fileUploaded($event)"
-                    name="demo[]"
-                    url="https://www.primefaces.org/cdn/api/upload.php"
-                    accept=".pdf">
-                </p-fileUpload>
-            </div>
-            <hr>
-            <div class="uploaded-files h-56 p-2">
-                @for (filePath of filePaths; track $index) {
-                    <pdf-viewer
-                        [src]="filePath"
-                        [page]="1"
-                        [fit-to-page]="true"    
-                        [autoresize]="true" 
-                        style="height: inherit; padding: 0.5rem;">
-                    </pdf-viewer>
-                }
-            </div>
-        </div>
+<div class="main flex">
+  <div class="side-bar w-1/5 h-screen bg-gray-100 border-2 border-solid border-red-500 overflow-auto"
+  >
+    <div class="wrapper">
+      <div class="file-upload flex justify-center p-2">
+        <p-fileUpload
+          [auto]="true"
+          [multiple]="true"
+          mode="basic"
+          chooseLabel="Upload File"
+          [chooseIcon]="'pi-upload'"
+          (onUpload)="fileUploaded($event)"
+          name="demo[]"
+          url="https://www.primefaces.org/cdn/api/upload.php"
+          accept=".pdf"
+        >
+        </p-fileUpload>
+      </div>
+      <hr />
+      @for (filePath of filePaths; track $index) {
+      <div class="file-preview h-56 p-2 mt-4" (click)="fileSelected(filePath)">
+        <pdf-viewer
+          class="border-2 border-solid border-blue-950 mb-4 cursor-pointer"
+          [src]="filePath"
+          [page]="1"
+          [original-size]="false"
+          [stick-to-page]="false"
+          [zoom-scale]="'page-fit'"
+          [show-all]="true"
+          style="height: inherit"
+        >
+        </pdf-viewer>
+      </div>
+      }
     </div>
+  </div>
+  <div class="main-content w-screen">
+    <div class="wrapper flex">
+      <div class="file-view w-full h-dvh bg-gray-100 border-2 border-solid border-blue-500"
+      >
+        <pdf-viewer
+          [src]="fileSelectedPath"
+          [page]="1"
+          [original-size]="false"
+          [stick-to-page]="false"
+          [zoom-scale]="'page-fit'"
+          [show-all]="true"
+          style="height: 100%"
+        >
+        </pdf-viewer>
+      </div>
+      <div class="file-data w-1/2 h-screen bg-white border-2 border-solid border-green-500"
+
+      ></div>
+    </div>
+  </div>
 </div>

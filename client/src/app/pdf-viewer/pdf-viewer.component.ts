@@ -19,11 +19,15 @@ import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload'
 export class PdfViewerComponent {
   isOpen: boolean = false;
   filePaths: string[] = [];
+  fileSelectedPath: string = '';
+
+  fileSelected(filePath: string) {
+    this.fileSelectedPath = filePath;
+  }
 
   async fileUploaded(event: FileUploadEvent) {
     await event.files.map(file => {
       this.filePaths.push(URL.createObjectURL(file));
-      
     })
   }
 }

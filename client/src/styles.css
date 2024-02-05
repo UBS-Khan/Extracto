@@ -5,3 +5,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.ng2-pdf-viewer-container {
+  overflow-x: visible !important;
+}
+
+.pdfViewer.removePageBorders .page {
+  margin: 0 auto !important;
+  border: none;
+}
