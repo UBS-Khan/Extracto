@@ -30,6 +30,7 @@ export class PdfViewerComponent {
   }
 
   fileUploaded(event: FileUploadEvent) {
+    console.log(event.files);
     event.files.map(file => {
     this.filePaths.push(URL.createObjectURL(file));
   })

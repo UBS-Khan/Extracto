@@ -1,5 +1,5 @@
 <div class="main flex">
-  <div class="side-bar w-1/5 h-screen bg-white border-2 border-solid border-red-500 overflow-auto"
+  <div class="side-bar w-1/5 h-screen bg-gray-100 border-2 border-solid border-red-500 overflow-auto"
   >
     <div class="wrapper">
       <div class="file-upload flex justify-center p-2">
@@ -25,8 +25,8 @@
           [page]="1"
           [original-size]="false"
           [stick-to-page]="false"
-          [zoom-scale]="'page-fit'"
           [show-all]="false"
+          [zoom-scale]="'page-fit'"
           style="height: inherit"
         >
         </pdf-viewer>
@@ -36,32 +36,35 @@
   </div>
   <div class="main-content w-screen">
     <div class="wrapper flex">
-      <div class="file-view w-full bg-gray-100 border-2 border-solid border-blue-500" style="height: 90vh;"
-      >
+      <div class="file-view w-full bg-gray-100 border-2 border-solid border-blue-500">
         <pdf-viewer
+        [autoresize]="true"
           [src]="fileSelectedPath"
           [(page)]="currentPage"
-          [show-all]="false"
           [original-size]="false"
           [stick-to-page]="true"
+          [fit-to-page]="false"
+          [show-all]="false"
           [zoom-scale]="'page-fit'"
           [zoom]="fileZoom"
-          style="height: 100%">
+          style="height: 92%; display: block;">
         </pdf-viewer>
-        <div class="toolbar flex justify-between w-2/4 m-auto my-3 p-1.5 bg-slate-200 rounded-md" style="height: 6vh;">
-          <div class="file-count">
-            <div class="flex shrink-0 items-center whitespace-nowrap text-xs">
-              <span>Page</span>
-              <input class="mx-1 w-12 rounded border border-solid border-gray-200 p-1 text-center" type="number" min="1" max="4" value="2">
-              <span class="mr-4">of 4</span>
+        <div class=" bg-gray-100 ">
+          <div class="toolbar flex justify-between w-2/4 m-auto my-3 p-1.5 bg-slate-400 rounded-md">
+            <div class="file-count">
+              <div class="flex shrink-0 items-center whitespace-nowrap text-xs">
+                <span>Page</span>
+                <input class="mx-1 w-12 rounded border border-solid border-gray-200 p-1 text-center" type="number" min="1" max="4" value="2">
+                <span class="mr-4">of 4</span>
+              </div>
             </div>
-          </div>
-          <div class="zoom">
-            <input id="small-range" type="range" [(value)]="fileZoom" [step]="20" class="w-2/4 h-1 m-1 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700">
+            <div class="zoom">
+              <input id="small-range" type="range" [(value)]="fileZoom" [step]="20" class="w-2/4 h-1 m-1 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700">
+            </div>
           </div>
         </div>
       </div>
-      <div class="file-data w-1/2 p-2 h-screen bg-white border-2 border-solid border-green-500">
+      <div class="file-data w-1/2 p-2 h-screen bg-gray-100 border-2 border-solid border-green-500">
         <div class="top-bar flex justify-between">
           <div class="file-name text-center">
             <h6>this is invoice's name</h6>
